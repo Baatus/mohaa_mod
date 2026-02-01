@@ -78,28 +78,24 @@ race_setup:
     
     // Haal spelers op
     local.players = $player
-    level.player1 = local.players[0]
-    level.player2 = local.players[1]
+    level.player1 = local.players[1]
+    level.player2 = local.players[2]
     
     // Spawn spelers op startposities
     level.player1 spawn
     level.player2 spawn
     
     // Teleport naar start posities (naast elkaar)
-    level.player1 origin (0 -100 64)
-    level.player2 origin (0 100 64)
+    level.player1 setorigin ( 0 -100 64 )
+    level.player2 setorigin ( 0 100 64 )
     
     // Kijk in richting van de finish
-    level.player1 angles (0 0 0)
-    level.player2 angles (0 0 0)
+    level.player1 setangles ( 0 0 0 )
+    level.player2 setangles ( 0 0 0 )
     
-    // Geef spelers health en ammo
+    // Geef spelers health
     level.player1 health 100
     level.player2 health 100
-    
-    // Freeze spelers tijdens countdown
-    level.player1 freeze
-    level.player2 freeze
     
     // Toon scores
     iprintln "=== Ronde " + level.round_number + " ==="
@@ -124,10 +120,6 @@ race_countdown:
     iprintlnbold "1..."
     wait 1
     iprintlnbold "GO!"
-    
-    // Unfreeze spelers
-    level.player1 unfreeze
-    level.player2 unfreeze
     
     // Activeer race
     level.race_active = 1

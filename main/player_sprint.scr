@@ -1,54 +1,21 @@
 // =====================================================
 // Sprint mechanisme voor spelers
+// OPMERKING: Dit is een placeholder - MOHAA ondersteunt
+// geen native sprint mechanisme via scripting.
+// Voor echte sprint functionaliteit moet je:
+// 1. De game C++ code aanpassen (niet mogelijk zonder source)
+// 2. Of een workaround gebruiken zoals bind-based speed boost
 // =====================================================
 
+// Placeholder - niet functioneel in vanilla MOHAA
 player_sprint_init local.player:
 {
-    local.player.sprint_active = 0
-    local.player.stamina = 100
-    local.player.max_stamina = 100
-    
-    // Thread voor sprint control
-    local.player thread player_sprint_control
+    // Sprint is niet geimplementeerd
+    // MOHAA heeft geen buttonpressed of movementspeed commando's
+    println "Sprint init - niet ondersteund in vanilla MOHAA scripting"
 }
 
-player_sprint_control:
-{
-    while (1)
-    {
-        // Check of speler shift ingedrukt houdt
-        if ($player[0] buttonpressed button_sprint && $player[0].stamina > 0)
-        {
-            // Activeer sprint
-            if (!$player[0].sprint_active)
-            {
-                $player[0].sprint_active = 1
-                $player[0] movementspeed 1.5  // 50% sneller
-            }
-            
-            // Verminder stamina
-            $player[0].stamina -= 2
-            if ($player[0].stamina < 0)
-            {
-                $player[0].stamina = 0
-            }
-        }
-        else
-        {
-            // Deactiveer sprint
-            if ($player[0].sprint_active)
-            {
-                $player[0].sprint_active = 0
-                $player[0] movementspeed 1.0  // Normal speed
-            }
-            
-            // Regenereer stamina
-            if ($player[0].stamina < $player[0].max_stamina)
-            {
-                $player[0].stamina += 1
-            }
-        }
-        
-        wait 0.1
-    }
-}
+// Alternatief: bind-based workaround
+// Spelers kunnen dit in hun console typen:
+// bind SHIFT "+speed; wait; -speed"
+// Dit geeft een tijdelijke snelheidsboost

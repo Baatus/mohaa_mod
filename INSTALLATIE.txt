@@ -51,14 +51,13 @@ STAP 3: Spelen
 CONTROLS:
 ---------
 - W/A/S/D of Pijltjestoetsen = Bewegen
-- Shift = Sprint (beperkte stamina)
 - Spatie = Springen
 
 TIPS:
 -----
-- Gebruik sprint strategisch (stamina regenereert langzaam)
 - Blijf rechtdoor rennen voor de kortste route
 - Spring niet teveel, het vertraagt je
+- Sprint is niet beschikbaar in vanilla MOHAA scripting
 
 CONFIGURATIE:
 -------------

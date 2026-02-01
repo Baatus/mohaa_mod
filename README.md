@@ -27,7 +27,8 @@ Een Medal of Honor Allied Assault multiplayer mod waarbij 2 spelers tegen elkaar
 - Ren 100 meter naar de finish lijn
 - De eerste speler die de finish bereikt wint de ronde
 - Best of 5 rondes - eerste bij 3 punten wint de match
-- Gebruik sprint (default Shift) voor extra snelheid
+
+**Sprint:** MOHAA heeft geen native sprint support via scripting. Spelers kunnen handmatig een snelheidsboost gebruiken via console commando's indien gewenst.
 
 ## Configuratie
 
