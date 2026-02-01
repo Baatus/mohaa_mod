@@ -81,17 +81,13 @@ race_setup:
     level.player1 = local.players[1]
     level.player2 = local.players[2]
     
-    // Spawn spelers op startposities
-    level.player1 spawn
-    level.player2 spawn
-    
     // Teleport naar start posities (naast elkaar)
-    level.player1 setorigin ( 0 -100 64 )
-    level.player2 setorigin ( 0 100 64 )
+    level.player1.origin = ( 0 -100 64 )
+    level.player2.origin = ( 0 100 64 )
     
     // Kijk in richting van de finish
-    level.player1 setangles ( 0 0 0 )
-    level.player2 setangles ( 0 0 0 )
+    level.player1.angles = ( 0 0 0 )
+    level.player2.angles = ( 0 0 0 )
     
     // Geef spelers health
     level.player1 health 100
