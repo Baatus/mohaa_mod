@@ -11,7 +11,7 @@ Een Medal of Honor Allied Assault multiplayer mod waarbij 2 spelers tegen elkaar
    - `map dm/mohdm2` (Northern Italy)
    - `map dm/mohdm3` (Destroyed Village)
    - Of elke andere DM map
-4. Type in de console: `exec dm_race.scr`
+4. Type in de console: `exec global/dm_race.scr::main`
 
 ## Hoe te spelen
 

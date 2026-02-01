@@ -16,12 +16,12 @@ STAP 2: Server starten
    - map dm/mohdm1  (Stalingrad)
    - map dm/mohdm2  (Northern Italy)
    - map dm/mohdm3  (Destroyed Village)
-5. Type: exec dm_race.scr
+5. Type: exec global/dm_race.scr::main
 
 Alternatief via dedicated server:
 ----------------------------------
 Maak een .bat bestand met:
-mohaa_server.exe +set dedicated 1 +set sv_maxclients 2 +map dm/mohdm1 +exec dm_race.scr
+mohaa_server.exe +set dedicated 1 +set sv_maxclients 2 +map dm/mohdm1 +exec global/dm_race.scr::main
 
 STAP 3: Spelen
 --------------

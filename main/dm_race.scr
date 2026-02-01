@@ -5,7 +5,7 @@
 // 
 // Gebruik:
 // 1. Laad een DM map: map dm/mohdm1
-// 2. Type in console: exec dm_race.scr
+// 2. Type in console: exec global/dm_race.scr::main
 // 
 // =====================================================
 
@@ -15,8 +15,10 @@ main:
     iprintlnbold "^2  MOHAA 100m RACE MOD"
     iprintlnbold "^5================================"
     
+    wait 0.1
+    
     // Start race mod
-    exec race_100m.scr::main
+    exec global/race_100m.scr::main
     
     wait 1
     iprintln "^2Race mod succesvol geladen!"
