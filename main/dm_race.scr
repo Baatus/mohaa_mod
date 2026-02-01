@@ -1,0 +1,27 @@
+// =====================================================
+// Simplified DM Race Script
+// Voor gebruik zonder custom map
+// =====================================================
+
+main:
+{
+    // Verwijder alle bestaande entities
+    $player setcontents 1
+    
+    // Race setup
+    thread global/dm_manager.scr::main
+    
+    // Start race mod
+    exec race_100m.scr::main
+    
+    iprintln "^2100m Race Mod geladen!"
+    iprintln "^3Type /ready wanneer beide spelers klaar zijn"
+}
+
+DM_init:
+{
+    setcvar "g_gametype" "1"
+    setcvar "fraglimit" "0"
+    setcvar "timelimit" "0"
+    setcvar "sv_maxclients" "2"
+}

@@ -1,0 +1,49 @@
+=====================================
+MOHAA 100m RACE MOD - INSTALLATIE
+=====================================
+
+STAP 1: Bestanden kopiëren
+---------------------------
+Kopieer de 'main' folder naar je Medal of Honor Allied Assault installatie folder.
+Standaard locatie: C:\Program Files (x86)\EA Games\Medal of Honor Allied Assault\
+
+STAP 2: Server starten
+----------------------
+1. Start MOHAA
+2. Druk op ~ om de console te openen
+3. Type: sv_maxclients 2
+4. Type: map dm/mohdm1  (of een andere dm map)
+5. Type: exec race_100m.scr
+
+Alternatief via dedicated server:
+----------------------------------
+Maak een .bat bestand met:
+mohaa_server.exe +set dedicated 1 +set sv_maxclients 2 +map dm/mohdm1 +exec race_100m.scr
+
+STAP 3: Spelen
+--------------
+1. Twee spelers joinen de server
+2. De race start automatisch wanneer beide spelers aanwezig zijn
+3. Ren naar de finish lijn (100m voor je uit)
+4. Eerste speler die de finish bereikt wint de ronde
+5. Best of 5 rondes bepaalt de winnaar
+
+CONTROLS:
+---------
+- W/A/S/D of Pijltjestoetsen = Bewegen
+- Shift = Sprint (beperkte stamina)
+- Spatie = Springen
+
+TIPS:
+-----
+- Gebruik sprint strategisch (stamina regenereert langzaam)
+- Blijf op het rechte pad voor de kortste route
+- Spring niet teveel, het vertraagt je
+
+TROUBLESHOOTING:
+----------------
+- Als de scripts niet laden, controleer of de bestanden in de juiste 'main' folder staan
+- Zorg dat sv_maxclients op 2 staat voor multiplayer
+- Bij crashes, verhoog je heap size: +set com_hunkmegs 128
+
+VEEL PLEZIER MET RACEN!

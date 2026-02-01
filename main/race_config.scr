@@ -1,0 +1,28 @@
+// MOHAA 100m Race Mod - Configuratie
+// =================================
+
+// Race instellingen
+set race_distance 100
+set race_countdown 3
+set race_reset_time 10
+
+// Spawn posities (X Y Z)
+set spawn1_x 0
+set spawn1_y 0
+set spawn1_z 64
+
+set spawn2_x 100
+set spawn2_y 0
+set spawn2_z 64
+
+// Finish lijn positie
+set finish_x 0
+set finish_y 5000
+set finish_z 64
+
+// Score instellingen
+set race_max_rounds 5
+set race_win_score 3
+
+// Debug mode
+set race_debug 1

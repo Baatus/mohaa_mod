@@ -1,0 +1,50 @@
+// =====================================================
+// HUD Display voor Race Mod
+// Toont positie, afstand, en stamina
+// =====================================================
+
+race_hud_init:
+{
+    level.hud_active = 1
+    thread race_hud_update
+}
+
+race_hud_update:
+{
+    while (level.hud_active)
+    {
+        if (level.race_active && level.player1 && level.player2)
+        {
+            // Bereken afstand tot finish
+            local.p1_y = level.player1.origin[1]
+            local.p2_y = level.player2.origin[1]
+            local.finish_y = 5000
+            
+            local.p1_distance = (local.finish_y - local.p1_y) / 50  // Units naar meters
+            local.p2_distance = (local.finish_y - local.p2_y) / 50
+            
+            if (local.p1_distance < 0) local.p1_distance = 0
+            if (local.p2_distance < 0) local.p2_distance = 0
+            
+            // Bepaal posities
+            if (local.p1_y > local.p2_y)
+            {
+                local.p1_position = "^21ste"
+                local.p2_position = "^12de"
+            }
+            else
+            {
+                local.p1_position = "^12de"
+                local.p2_position = "^21ste"
+            }
+            
+            // Toon HUD voor speler 1
+            level.player1 iprintln "Positie: " + local.p1_position + " | Afstand: " + local.p1_distance + "m"
+            
+            // Toon HUD voor speler 2
+            level.player2 iprintln "Positie: " + local.p2_position + " | Afstand: " + local.p2_distance + "m"
+        }
+        
+        wait 0.5
+    }
+}
