@@ -17,12 +17,247 @@ main:
     
     wait 0.1
     
-    // Start race mod
-    exec global/race_100m.scr::main
+    // Race variabelen
+    level.race_active = 0
+    level.player1_ready = 0
+    level.player2_ready = 0
+    level.player1_finished = 0
+    level.player2_finished = 0
+    level.winner = NULL
+    
+    // Scores
+    level.player1_score = 0
+    level.player2_score = 0
+    level.round_number = 1
+    
+    // Start de race setup
+    thread race_init
     
     wait 1
     iprintln "^2Race mod succesvol geladen!"
-    iprintln "^3Wachten op 2 spelers..."
+    iprintln "^2=== 100m RACE MOD ==="
+    iprintln "^3Ren naar de finish lijn!"
+    iprintln "^3Eerste speler bij de finish wint!"
+}
+
+// =====================================================
+// Race initialisatie
+// =====================================================
+race_init:
+{
+    // Wacht tot er 2 spelers zijn
+    while (1)
+    {
+        local.player_count = $player.size
+        
+        if (local.player_count >= 2)
+        {
+            iprintln "^22 spelers gevonden! Race begint over 5 seconden..."
+            wait 5
+            thread race_setup
+            break
+        }
+        else
+        {
+            iprintln "^3Wachten op meer spelers... (" + local.player_count + "/2)"
+            wait 3
+        }
+    }
+}
+
+// =====================================================
+// Race setup en spawn
+// =====================================================
+race_setup:
+{
+    // Reset race status
+    level.race_active = 0
+    level.player1_finished = 0
+    level.player2_finished = 0
+    level.winner = NULL
+    
+    // Haal spelers op
+    local.players = $player
+    level.player1 = local.players[0]
+    level.player2 = local.players[1]
+    
+    // Spawn spelers op startposities
+    level.player1 spawn
+    level.player2 spawn
+    
+    // Teleport naar start posities (naast elkaar)
+    level.player1 origin (0 -100 64)
+    level.player2 origin (0 100 64)
+    
+    // Kijk in richting van de finish
+    level.player1 angles (0 0 0)
+    level.player2 angles (0 0 0)
+    
+    // Geef spelers health en ammo
+    level.player1 health 100
+    level.player2 health 100
+    
+    // Freeze spelers tijdens countdown
+    level.player1 freeze
+    level.player2 freeze
+    
+    // Toon scores
+    iprintln "^5=== Ronde " + level.round_number + " ==="
+    iprintln "^2Speler 1: " + level.player1_score + " punten"
+    iprintln "^2Speler 2: " + level.player2_score + " punten"
+    
+    wait 2
+    
+    // Start countdown
+    thread race_countdown
+}
+
+// =====================================================
+// Race countdown
+// =====================================================
+race_countdown:
+{
+    iprintlnbold "^13..."
+    wait 1
+    iprintlnbold "^12..."
+    wait 1
+    iprintlnbold "^11..."
+    wait 1
+    iprintlnbold "^2GO!"
+    
+    // Unfreeze spelers
+    level.player1 unfreeze
+    level.player2 unfreeze
+    
+    // Activeer race
+    level.race_active = 1
+    
+    // Start race monitoring
+    thread race_monitor
+}
+
+// =====================================================
+// Race monitoring - Check wie als eerste finisht
+// =====================================================
+race_monitor:
+{
+    local.start_time = level.time
+    local.finish_line_y = 5000  // 100m vanaf start (5000 units = ~100m)
+    
+    while (level.race_active)
+    {
+        // Check of een speler dood is
+        if (!level.player1 || level.player1.health <= 0)
+        {
+            iprintlnbold "^1Speler 1 is uitgevallen!"
+            level.winner = level.player2
+            thread race_end
+            break
+        }
+        
+        if (!level.player2 || level.player2.health <= 0)
+        {
+            iprintlnbold "^1Speler 2 is uitgevallen!"
+            level.winner = level.player1
+            thread race_end
+            break
+        }
+        
+        // Check posities
+        local.p1_pos = level.player1.origin
+        local.p2_pos = level.player2.origin
+        
+        // Check of speler 1 de finish heeft bereikt
+        if (!level.player1_finished && local.p1_pos[1] >= local.finish_line_y)
+        {
+            level.player1_finished = 1
+            local.p1_time = level.time - local.start_time
+            iprintlnbold "^2SPELER 1 HEEFT DE FINISH BEREIKT!"
+            iprintln "^3Tijd: " + local.p1_time + " seconden"
+            
+            if (!level.winner)
+            {
+                level.winner = level.player1
+                thread race_end
+                break
+            }
+        }
+        
+        // Check of speler 2 de finish heeft bereikt
+        if (!level.player2_finished && local.p2_pos[1] >= local.finish_line_y)
+        {
+            level.player2_finished = 1
+            local.p2_time = level.time - local.start_time
+            iprintlnbold "^2SPELER 2 HEEFT DE FINISH BEREIKT!"
+            iprintln "^3Tijd: " + local.p2_time + " seconden"
+            
+            if (!level.winner)
+            {
+                level.winner = level.player2
+                thread race_end
+                break
+            }
+        }
+        
+        wait 0.05
+    }
+}
+
+// =====================================================
+// Race einde
+// =====================================================
+race_end:
+{
+    level.race_active = 0
+    
+    wait 1
+    
+    // Update scores
+    if (level.winner == level.player1)
+    {
+        level.player1_score++
+        iprintlnbold "^2=== SPELER 1 WINT DEZE RONDE! ==="
+    }
+    else if (level.winner == level.player2)
+    {
+        level.player2_score++
+        iprintlnbold "^2=== SPELER 2 WINT DEZE RONDE! ==="
+    }
+    
+    wait 2
+    
+    // Check of iemand de match heeft gewonnen (best of 5)
+    if (level.player1_score >= 3)
+    {
+        iprintlnbold "^5================================"
+        iprintlnbold "^2SPELER 1 WINT DE MATCH!"
+        iprintlnbold "^5================================"
+        wait 10
+        // Reset scores
+        level.player1_score = 0
+        level.player2_score = 0
+        level.round_number = 1
+    }
+    else if (level.player2_score >= 3)
+    {
+        iprintlnbold "^5================================"
+        iprintlnbold "^2SPELER 2 WINT DE MATCH!"
+        iprintlnbold "^5================================"
+        wait 10
+        // Reset scores
+        level.player1_score = 0
+        level.player2_score = 0
+        level.round_number = 1
+    }
+    else
+    {
+        level.round_number++
+        iprintln "^3Volgende ronde start over 5 seconden..."
+        wait 5
+    }
+    
+    // Start nieuwe ronde
+    thread race_setup
 }
 
 DM_init:

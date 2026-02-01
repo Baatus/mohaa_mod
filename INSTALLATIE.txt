@@ -7,6 +7,9 @@ STAP 1: Bestanden kopiëren
 Kopieer de 'main' folder naar je Medal of Honor Allied Assault installatie folder.
 Standaard locatie: C:\Program Files (x86)\EA Games\Medal of Honor Allied Assault\
 
+LET OP: De bestanden uit main/ moeten in je MOHAA main/ folder komen!
+Bijvoorbeeld: dm_race.scr komt in: C:\...\Medal of Honor Allied Assault\main\dm_race.scr
+
 STAP 2: Server starten
 ----------------------
 1. Start MOHAA

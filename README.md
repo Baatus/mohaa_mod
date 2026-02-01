@@ -13,6 +13,8 @@ Een Medal of Honor Allied Assault multiplayer mod waarbij 2 spelers tegen elkaar
    - Of elke andere DM map
 4. Type in de console: `exec global/dm_race.scr::main`
 
+**Let op:** Zorg dat je de `main` folder uit dit project kopieert naar je MOHAA installatie (niet erin, maar vervang/merge).
+
 ## Hoe te spelen
 
 - Minimaal 2 spelers nodig
@@ -32,8 +34,8 @@ Je kunt de race aanpassen in `main/race_config.scr`:
 
 ## Bestanden
 
-- `main/dm_race.scr` - Start script om te executen
-- `main/race_100m.scr` - Hoofdscript voor race logica
-- `main/race_config.scr` - Configuratie instellingen
-- `main/race_hud.scr` - HUD elementen voor race info
-- `main/player_sprint.scr` - Sprint mechanisme
+- `main/dm_race.scr` - Hoofd race script (execute dit)
+- `main/race_config.scr` - Configuratie instellingen (optioneel)
+- `main/race_hud.scr` - HUD elementen (optioneel)
+- `main/player_sprint.scr` - Sprint mechanisme (optioneel)
+- `main/race_100m.scr` - Legacy support (niet nodig)
