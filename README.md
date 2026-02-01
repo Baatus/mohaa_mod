@@ -4,16 +4,20 @@ Een Medal of Honor Allied Assault multiplayer mod waarbij 2 spelers tegen elkaar
 
 ## Installatie
 
-1. Kopieer de `main` folder naar je MOHAA installatiemap
+1. Kopieer **de bestanden uit de `main` folder** naar je MOHAA `main` folder:
+   - Van: `mohaa_race_mod\main\*.scr`
+   - Naar: `C:\Program Files (x86)\EA Games\Medal of Honor Allied Assault\main\`
+   - Het eindresultaat moet zijn: `C:\...\MOHAA\main\dm_race.scr` (niet `main\main\dm_race.scr`!)
+
 2. Start MOHAA en open de console met `~`
+
 3. Laad een bestaande DM map, bijvoorbeeld:
    - `map dm/mohdm1` (Stalingrad)
    - `map dm/mohdm2` (Northern Italy)
    - `map dm/mohdm3` (Destroyed Village)
    - Of elke andere DM map
-4. Type in de console: `exec global/dm_race.scr::main`
 
-**Let op:** Zorg dat je de `main` folder uit dit project kopieert naar je MOHAA installatie (niet erin, maar vervang/merge).
+4. Type in de console: `exec global/dm_race.scr::main`
 
 ## Hoe te spelen
 
