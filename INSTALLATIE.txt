@@ -12,21 +12,26 @@ STAP 2: Server starten
 1. Start MOHAA
 2. Druk op ~ om de console te openen
 3. Type: sv_maxclients 2
-4. Type: map dm/mohdm1  (of een andere dm map)
-5. Type: exec race_100m.scr
+4. Laad een bestaande DM map, bijvoorbeeld:
+   - map dm/mohdm1  (Stalingrad)
+   - map dm/mohdm2  (Northern Italy)
+   - map dm/mohdm3  (Destroyed Village)
+5. Type: exec dm_race.scr
 
 Alternatief via dedicated server:
 ----------------------------------
 Maak een .bat bestand met:
-mohaa_server.exe +set dedicated 1 +set sv_maxclients 2 +map dm/mohdm1 +exec race_100m.scr
+mohaa_server.exe +set dedicated 1 +set sv_maxclients 2 +map dm/mohdm1 +exec dm_race.scr
 
 STAP 3: Spelen
 --------------
 1. Twee spelers joinen de server
 2. De race start automatisch wanneer beide spelers aanwezig zijn
-3. Ren naar de finish lijn (100m voor je uit)
-4. Eerste speler die de finish bereikt wint de ronde
-5. Best of 5 rondes bepaalt de winnaar
+3. Beide spelers worden naar de startlijn geteleporteerd
+4. Countdown: 3-2-1-GO!
+5. Ren 100 meter naar de finish lijn
+6. Eerste speler die de finish bereikt wint de ronde
+7. Best of 5 rondes - eerste bij 3 punten wint de match
 
 CONTROLS:
 ---------
@@ -37,13 +42,21 @@ CONTROLS:
 TIPS:
 -----
 - Gebruik sprint strategisch (stamina regenereert langzaam)
-- Blijf op het rechte pad voor de kortste route
+- Blijf rechtdoor rennen voor de kortste route
 - Spring niet teveel, het vertraagt je
+
+CONFIGURATIE:
+-------------
+Je kunt de race aanpassen in main/race_config.scr:
+- Race afstand (standaard 100m = 5000 units)
+- Sprint snelheid en stamina
+- Aantal rondes om te winnen
 
 TROUBLESHOOTING:
 ----------------
 - Als de scripts niet laden, controleer of de bestanden in de juiste 'main' folder staan
-- Zorg dat sv_maxclients op 2 staat voor multiplayer
+- Zorg dat sv_maxclients op minimaal 2 staat voor multiplayer
 - Bij crashes, verhoog je heap size: +set com_hunkmegs 128
+- Werkt op elke DM map - geen custom map nodig!
 
 VEEL PLEZIER MET RACEN!
