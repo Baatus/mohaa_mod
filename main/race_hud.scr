@@ -29,13 +29,13 @@ race_hud_update:
             // Bepaal posities
             if (local.p1_y > local.p2_y)
             {
-                local.p1_position = "^21ste"
-                local.p2_position = "^12de"
+                local.p1_position = "1ste"
+                local.p2_position = "2de"
             }
             else
             {
-                local.p1_position = "^12de"
-                local.p2_position = "^21ste"
+                local.p1_position = "2de"
+                local.p2_position = "1ste"
             }
             
             // Toon HUD voor speler 1

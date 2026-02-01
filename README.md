@@ -36,7 +36,19 @@ Je kunt de race aanpassen in `main/race_config.scr`:
 - Sprint snelheid
 - Aantal rondes om te winnen
 
-## Bestanden
+## Technische Details
+
+**Gebaseerd op MOHAA modding voorbeelden:**
+- Scripts gebruiken standaard MOHAA script syntax (geen kleurcodes)
+- Print commando's: `iprintln`, `iprintlnbold`, `iprint`
+- Voor geavanceerde HUD: gebruik `stufftext` met `globalwidgetcommand`
+- Threading met `thread` en `waitthread`
+- Variabelen met `local.` en `level.` prefix
+
+**Compatibiliteit:**
+- MOHAA versie 1.11 en hoger
+- Werkt op alle DM maps
+- Multiplayer ready (dedicated server support)
 
 - `main/dm_race.scr` - Hoofd race script (execute dit)
 - `main/race_config.scr` - Configuratie instellingen (optioneel)
